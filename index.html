@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema Bancário</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+
+  <!-- Botão de tema -->
+  <div class="theme-toggle" id="themeToggle">
+    <span>☀️</span>
+    <div class="toggle-track"><div class="toggle-ball"></div></div>
+    <span>🌙</span>
+  </div>
+
+  <!-- Tela inicial -->
+  <section id="welcomeScreen" class="center-screen">
+    <div class="card card-medium">
+      <h1>Sistema Bancário</h1>
+      <p>Escolha como deseja entrar:</p>
+
+      <button id="btnSouCliente" class="btn btn-primary">Sou Cliente</button>
+      <button id="btnSouGerencial" class="btn btn-primary">Sou Funcionário</button>
+    </div>
+  </section>
+
+  <!-- Tela de login -->
+  <section id="loginScreen" class="center-screen hidden">
+    <div class="card card-medium">
+      <h2 id="loginTitulo">Login</h2>
+
+      <form id="loginForm">
+        <label for="loginCPF">CPF:</label>
+        <input id="loginCPF" class="input" placeholder="CPF">
+
+        <label for="loginSenha">Senha:</label>
+        <input id="loginSenha" class="input" type="password" placeholder="Senha">
+
+        <p id="loginErro" class="erro-msg"></p>
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Dashboard Cliente -->
+  <section id="clienteDashboard" class="hidden">
+    <header class="top-menu">
+      <h2 id="clienteIdentificacao"></h2>
+      <button id="btnClienteLogoff" class="btn btn-secondary">Sair</button>
+    </header>
+
+    <div class="card card-large">
+      <h3>Dados do Cliente</h3>
+      <table class="table">
+        <tbody id="tabelaResumoCliente"></tbody>
+      </table>
+    </div>
+
+    <div class="card card-large">
+      <h3>Contas do Cliente</h3>
+      <table class="table">
+        <thead>
+          <tr class="table-header">
+            <th>Número</th>
+            <th>Tipo</th>
+            <th>Saldo</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaContasCliente"></tbody>
+      </table>
+    </div>
+
+    <div class="card card-large">
+      <h3>Transações</h3>
+      <table class="table">
+        <thead>
+          <tr class="table-header">
+            <th>Data</th>
+            <th>Conta</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Novo Saldo</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaTransacoesCliente"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Dashboard Gerencial -->
+  <section id="gerencialDashboard" class="hidden">
+    <header class="top-menu">
+      <h2>Painel Gerencial</h2>
+      <button id="btnGerencialLogoff" class="btn btn-secondary">Sair</button>
+    </header>
+
+    <!-- Cadastro de Clientes -->
+    <div class="card card-large">
+      <h3>Cadastro de Clientes</h3>
+      <form id="formCliente">
+
+        <label for="clienteNome">Nome:</label>
+        <input id="clienteNome" class="input" placeholder="Nome completo">
+
+        <label for="clienteCPF">CPF:</label>
+        <input id="clienteCPF" class="input" placeholder="CPF (11 dígitos)">
+
+        <label for="clienteEmail">Email:</label>
+        <input id="clienteEmail" class="input" placeholder="Email">
+
+        <p id="erroCliente" class="erro-msg"></p>
+        <button type="submit" class="btn btn-primary">Cadastrar Cliente</button>
+      </form>
+    </div>
+
+    <div class="card card-large">
+      <h3>Clientes Cadastrados</h3>
+      <table class="table">
+        <thead>
+          <tr class="table-header">
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Email</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaClientes"></tbody>
+      </table>
+    </div>
+
+    <!-- Cadastro de Contas -->
+    <div class="card card-large">
+      <h3>Cadastro de Contas</h3>
+      <form id="formConta">
+
+        <label for="contaClienteSelect">Cliente:</label>
+        <select id="contaClienteSelect" class="input"></select>
+
+        <label for="contaTipo">Tipo da conta:</label>
+        <select id="contaTipo" class="input">
+          <option value="">Selecione o tipo</option>
+          <option value="Corrente">Corrente</option>
+          <option value="Poupança">Poupança</option>
+        </select>
+
+        <label for="contaNumero">Número da conta:</label>
+        <input id="contaNumero" class="input" placeholder="Número da conta">
+
+        <p id="erroConta" class="erro-msg"></p>
+        <button type="submit" class="btn btn-primary">Cadastrar Conta</button>
+      </form>
+    </div>
+
+    <div class="card card-large">
+      <h3>Contas Cadastradas</h3>
+      <table class="table">
+        <thead>
+          <tr class="table-header">
+            <th>Número</th>
+            <th>Cliente</th>
+            <th>Tipo</th>
+            <th>Saldo</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaContas"></tbody>
+      </table>
+    </div>
+
+    <!-- Transações -->
+    <div class="card card-large">
+      <h3>Registrar Transação</h3>
+      <form id="formTransacao">
+
+        <label for="transacaoContaSelect">Conta:</label>
+        <select id="transacaoContaSelect" class="input"></select>
+
+        <label for="transacaoTipo">Tipo da transação:</label>
+        <select id="transacaoTipo" class="input">
+          <option value="">Selecione o tipo</option>
+          <option value="Depósito">Depósito</option>
+          <option value="Saque">Saque</option>
+        </select>
+
+        <label for="transacaoValor">Valor:</label>
+        <input id="transacaoValor" class="input" type="number" placeholder="Valor">
+
+        <p id="erroTransacao" class="erro-msg"></p>
+        <button type="submit" class="btn btn-primary">Registrar Transação</button>
+      </form>
+    </div>
+
+    <div class="card card-large">
+      <h3>Histórico de Transações</h3>
+      <table class="table">
+        <thead>
+          <tr class="table-header">
+            <th>Data</th>
+            <th>Conta</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Novo Saldo</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaTransacoes"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "clientes": [],
+  "contas": [],
+  "transacoes": [],
+  "usuariosGerenciais": [
+    {
+      "cpf": "00000000000",
+      "senha": "admin"
+    }
+  ]
+}
