@@ -1,0 +1,58 @@
+{
+  "clientes": [
+    {
+      "id": 1,
+      "nome": "João Silva",
+      "cpf": "12345678900",
+      "email": "joao@email.com"
+    },
+    {
+      "id": 2,
+      "nome": "Maria Souza",
+      "cpf": "98765432100",
+      "email": "maria@email.com"
+    }
+  ],
+  "contas": [
+    {
+      "id": 1,
+      "numero": 1001,
+      "clienteId": 1,
+      "tipo": "Corrente",
+      "saldo": 5000,
+      "status": "Ativa"
+    },
+    {
+      "id": 2,
+      "numero": 2001,
+      "clienteId": 2,
+      "tipo": "Poupança",
+      "saldo": 1500,
+      "status": "Ativa"
+    }
+  ],
+  "transacoes": [
+    {
+      "id": 1,
+      "contaId": 1,
+      "tipo": "Depósito",
+      "valor": 1000,
+      "novoSaldo": 6000,
+      "data": "2026-03-16"
+    },
+    {
+      "id": 2,
+      "contaId": 2,
+      "tipo": "Saque",
+      "valor": 200,
+      "novoSaldo": 1300,
+      "data": "2026-03-17"
+    }
+  ],
+  "usuariosGerenciais": [
+    {
+      "cpf": "00000000000",
+      "senha": "admin"
+    }
+  ]
+}
